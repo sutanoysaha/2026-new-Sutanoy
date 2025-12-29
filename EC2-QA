@@ -1,0 +1,34 @@
+What is EC2 in AWS? 
+🔸EC2 is a web service that offers resizable compute capacity in the cloud enabling users to launch and manage virtual machines (instances).
+ 
+2. What are the different types of EC2 instances? 
+🔸Instance types include General Purpose, Compute Optimized, Memory Optimized, Storage Optimized and GPU Instances.
+ 
+3. What is an AMI (Amazon Machine Image)? 
+🔸An AMI is a pre-configured template that contains the operating system application server and applications necessary to launch an EC2 instance.
+ 
+4. What are EC2 key pairs? 
+🔸Key pairs are used for secure login to EC2 instances, consisting of a public key and a private key. 
+
+🔹S3 (Simple Storage Service)
+1. What is Amazon S3? 
+🔸Amazon S3 is an object storage service that saves data as objects within buckets, providing high availability, scalability and durability.
+ 
+2. What are the storage classes in S3? 
+🔸The storage classes include Standard, Intelligent-Tiering, Standard-IA, One Zone-IA, Glacier and Glacier Deep Archive.
+ 
+3. How does versioning work in S3? 
+🔸S3 versioning allows multiple versions of an object to be stored in a bucket, protecting against accidental overwrites or deletions.
+ 
+4. What is an S3 bucket? 
+🔸A bucket is a container used to store objects (files) in Amazon S3 with each bucket having a unique name.
+ 
+5. What are S3 access control policies? 
+🔸S3 uses Bucket Policies and ACLs (Access Control Lists) to manage access to buckets and objects.
+
+🔹IAM (Identity and Access Management)
+1. What is AWS IAM? 
+🔸IAM is a service that enables users to securely control access to AWS resources through policies, roles and user accounts.
+
+2. How do you implement multi-factor authentication (MFA) in AWS? 
+🔸MFA adds an extra security layer by requiring users to input a one-time password in addition to their regular credentials.
