@@ -1,0 +1,33 @@
+Azssss
+
+ Q19 : Azure Rapid Fire questions - Master the Basics
+
+1. How do you resize an Azure VM?
+Go to VM > Availability + scale > Size, choose a compatible VM size, and click Resize.
+
+2. Does resizing an Azure Virtual Machine require a reboot?
+Yes. Resizing normally restarts the VM. If the new size isn’t available on the current hardware cluster, Azure must stop/deallocate the VM before resizing.
+
+3. Can we attach a Network Security Group (NSG) directly to a Virtual Network?
+No. NSGs can only be attached to subnets or network interfaces (NICs).
+
+4. Can VMs in different subnets of the same VNet communicate with each other?
+Yes. Intra-VNet communication is allowed by default unless blocked by NSGs or custom routes.
+
+5. Can an OS disk be removed from an Azure VM?
+No. You cannot remove an OS disk from a running VM, but Azure supports OS disk swapping when the VM is stopped.
+
+6. For Azure VM Backup, can the Recovery Services Vault and VM be in different regions?
+No. The Recovery Services Vault and the VM must be in the same region for backup.
+
+7. Can tags be inherited automatically by child resources in Azure?
+No. Tag inheritance does not happen automatically. Azure Policy or automation is required.
+
+8. Can a resource belong to multiple resource groups?
+No. A resource can belong to only one resource group at a time.
+
+9.Why does a Resource Group need a location in Azure?
+A Resource Group needs a location because its metadata (like tags, locks, resource info, deployment history) and management information are stored in that specific region, even though its resources can exist anywhere.
+
+10.Does Azure charge you for a stopped (but not deallocated) VM?
+Yes. Azure still charges for compute when the VM is Stopped, but not Stopped (Deallocated).
