@@ -1,0 +1,54 @@
+Scenario 1: Production Server Not Reachable
+
+
+Q: Server is DOWN. What are your steps?
+1. Check monitoring alerts (Nagios/Zabbix).
+2. Ping server → check network reachability.
+ #sudo ping -c 5 Server Name / IP Address
+3. Try SSH → verify access.
+ #ssh username@servername/IP address
+4. Check hypervisor/cloud console.
+5. Verify CPU, memory, disk, network.
+$CPU #top , #htop,#uptime, #lscpu, #cat /proc/cpuinfo, #ps aux --sort=-%cpu | head
+
+$MEMORY#top ,#htop, #free -m, #swapon -s , #cat /proc/meminfo #vmstat #ps aux --sort=-%mem | head 
+
+$DISK #df -h, #du -sh /filesystemname, #iostat -xz 1 3 #lsblk 
+
+$Network #ip addr, #iftop, #route -rn #ss -tulnp #ping google.com #nslookup google.com
+
+6. Check last changes (patch, reboot).
+#last reboot, #uptime, #who -b #last -x | grep reboot
+#yum history # yum history info, #dnf history, #dnf history info,# lastlog #last,#history , # grep -i reboot /var/log/messages ,# journalctl -b -1
+
+7. Restore services and inform stakeholders.
+#systemctl --failed #systemctl status <service-name> #systemctl start <service-name> #systemctl restart <service-name> #systemctl enable <service-name> 
+8. Perform RCA and preventive actions.
+
+Scenario 2: High Load but Low CPU Usage
+Q: Load average is high but CPU is low. Why?
+Because load includes processes waiting for I/O. I check disk latency and memory using:
+#iostat -x
+#vmstat
+#free -h
+#mount | grep nfs
+#nfsstat
+#ps -eo state,pid,cmd | grep "^D"
+# ps aux | grep Z
+# Root cause could be disk I/O wait or swap usage.
+
+Scenario 3: Disk Full in Production
+Q: Root filesystem is 100%. How do you fix without downtime?
+Identify large files using #du, 
+Clear rotated logs.
+Compress old files
+#df -h / #df -i / #du -xh / --max-depth=1 | sort -hr 
+#du -sh /var/log/* # truncate -s 0 /var/log/messages
+#truncate -s 0 /var/log/secure
+#> /var/log/messages #journalctl --disk-usage
+#journalctl --vacuum-time=7d #yum clean all
+#rm -rf /tmp/* #rm -rf /var/tmp/* #lsof +L1
+Extend LVM online if needed.
+#lvextend -L +10G /dev/mapper/rhel-root
+#xfs_growfs /
+#resize2fs /dev/mapper/rhel-root
