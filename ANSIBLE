@@ -1,0 +1,44 @@
+---
+- name: Manage services using Ansible
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure ssh service is running and enabled
+      service:
+        name: sshd
+        state: started
+        enabled: yes
+
+
+
+---
+- name: Install common packages on Linux servers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install common packages
+      package:
+        name:
+          - vim
+          - curl
+          - git
+          - wget
+        state: present
+
+
+---
+- name: User management using Ansible
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create devops user
+      user:
+        name: devops
+        comment: DevOps User
+        groups: wheel
+        append: yes
+        password: "{{ 'StrongPassword123' | password_hash('sha512') }}"
+        state: present
+
+
+
